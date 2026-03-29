@@ -1,0 +1,37 @@
+cat > .gitignore << 'EOF'
+# Dependencies
+node_modules/
+.bun/
+
+# Build outputs
+dist/
+.next/
+.turbo/
+out/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+playwright-results/
+test-results/
+
+# Docker
+*.log
+
+# Misc
+*.tsbuildinfo
+EOF
