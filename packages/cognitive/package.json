@@ -1,0 +1,28 @@
+{
+  "name": "@forgeai/cognitive",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "clean": "rm -rf dist",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@forgeai/ai": "workspace:*",
+    "@forgeai/db": "workspace:*",
+    "@forgeai/shared": "workspace:*",
+    "eslint": "^9.2.0",
+    "ioredis": "^5.3.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@forgeai/config": "workspace:*",
+    "@types/eslint": "^8.56.10",
+    "tsup": "^8.0.2"
+  }
+}

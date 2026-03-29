@@ -1,0 +1,31 @@
+{
+  "name": "@forgeai/email",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "clean": "rm -rf dist",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@forgeai/shared": "workspace:*",
+    "@react-email/components": "^0.0.17",
+    "@react-email/render": "^0.0.13",
+    "nodemailer": "^6.9.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "resend": "^3.2.0"
+  },
+  "devDependencies": {
+    "@forgeai/config": "workspace:*",
+    "@types/nodemailer": "^6.4.15",
+    "@types/react": "^18.3.2",
+    "@types/react-dom": "^18.3.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

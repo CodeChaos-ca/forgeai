@@ -1,0 +1,17 @@
+{
+  "name": "@forgeai/config",
+  "version": "6.0.0",
+  "private": true,
+  "dependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "tailwindcss": "4.x",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.5.4"
+  }
+}
