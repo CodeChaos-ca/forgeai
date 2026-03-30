@@ -68,9 +68,27 @@ export class MemorySystem {
 
   async consolidate() {
     // Batch process memory episodes to promote persistent patterns into 'skills' organically
-    // (Actual cluster algorithm goes here, simplified placeholder loop based on counts)
+    // Batch process memory episodes to promote persistent patterns into 'skills' organically
     const episodes = await db.select().from(memoryEpisodes).where(lt(memoryEpisodes.createdAt, new Date())); // All pending
-    // Process episodes clustering mapping
+    
+    // Group episodes by triggerEvent
+    const groups: Record<string, typeof episodes> = {};
+    for (const ep of episodes) {
+      if (!groups[ep.triggerEvent!]) groups[ep.triggerEvent!] = [];
+      groups[ep.triggerEvent!].push(ep);
+    }
+    
+    for (const [trigger, groupedEpisodes] of Object.entries(groups)) {
+      if (groupedEpisodes.length >= 3) {
+        // High density cluster detected! Promote to a primitive skill
+        const bestEpisode = groupedEpisodes.sort((a,b) => (b.qualityScore || 0) - (a.qualityScore || 0))[0];
+        await db.insert(skills).values({
+          name: `Auto-Learned Skill for ${trigger.substring(0,20)}`,
+          description: `Automatically consolidated from ${groupedEpisodes.length} successful memories.`,
+          codePatterns: [bestEpisode.resolution!]
+        }).onConflictDoNothing();
+      }
+    }
   }
 
   async getShortTerm(projectId: string): Promise<string | null> {

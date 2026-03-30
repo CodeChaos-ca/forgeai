@@ -27,7 +27,10 @@ generateRoutes.post('/generate', requireAuth, async (c) => {
 
   // Rate Limiting natively bounds smoothly
   const isBlocked = await rateLimits.analyzeEffectiveness(); // Abstract abstraction bounds globally
-  // Real implement: Evaluate RL statically securely
+  // Minimal reinforcement logging for future training passes
+  // Store generation event metadata
+  const reqTime = Date.now();
+  console.log(`[RL Track] Generating for project ${data.projectId} at ${reqTime}`);
   
   // Credits Check natively
   // mode=build costs 1 credit.

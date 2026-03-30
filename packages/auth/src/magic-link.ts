@@ -24,10 +24,18 @@ export async function verifyMagicLink(token: string): Promise<string | null> {
   return null;
 }
 
+const { Queue } = require('bullmq');
+const emailQueue = new Queue('emails', { connection: redis });
+
 export async function sendMagicLink(email: string, appUrl: string) {
   const token = await generateMagicLink(email);
   const link = `${appUrl}/api/auth/magic-link?token=${token}`;
   
-  console.log(`[AUTH] Sending MAGIC LINK to ${email}: ${link}`);
-  // Intended side effect: Trigger email sending logic here e.g. Resend, Postmark
+  await emailQueue.add('magic-link', {
+    to: email,
+    template: 'magic-link',
+    payload: { link }
+  });
+  
+  console.log(`[AUTH] Enqueued MAGIC LINK email to ${email}`);
 }
