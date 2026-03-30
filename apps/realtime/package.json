@@ -1,0 +1,29 @@
+{
+  "name": "@forgeai/realtime",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build ./src/index.ts --target=node --outdir=dist",
+    "start": "NODE_ENV=production bun ./dist/index.js",
+    "lint": "eslint \"src/**/*.ts\"",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.5",
+    "ioredis": "^5.3.2",
+    "@socket.io/redis-adapter": "^8.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0",
+    "cors": "^2.8.5",
+    "@forgeai/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@forgeai/config": "workspace:*",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  }
+}

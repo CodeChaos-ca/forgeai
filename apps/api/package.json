@@ -1,0 +1,32 @@
+{
+  "name": "@forgeai/api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "start": "NODE_ENV=production node dist/index.js",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.0.0",
+    "@hono/node-server": "^1.8.0",
+    "zod": "^3.22.4",
+    "pino": "^8.19.0",
+    "pino-http": "^9.0.0",
+    "ioredis": "^5.3.2",
+    "stripe": "^14.19.0",
+    "uuid": "^9.0.1",
+    "@forgeai/shared": "workspace:*",
+    "@forgeai/db": "workspace:*",
+    "@forgeai/auth": "workspace:*",
+    "@forgeai/email": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/uuid": "^9.0.8",
+    "typescript": "^5.3.3",
+    "@forgeai/config": "workspace:*"
+  }
+}
